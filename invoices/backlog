@@ -1,0 +1,7 @@
+
+[czy można pogodzić elementy htm5 (input type=date) ze spring mvc i formatkami spring mvc??]
+-zabawy z datą: próbuje dodać ustawianie daty do invoice. 
+Dodałem kolumny z datami do encji Invoice.java i hibernate sam z automatu wykonał update 
+i modyfikacje po stronie bazy danych;  
+
+-dodałem obsługę utf-8

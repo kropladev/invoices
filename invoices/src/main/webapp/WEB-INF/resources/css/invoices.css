@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+/* CLASSES */
+.floatLeft {float:left;}
+
+/* ELEMENTS */
+#menu {width: 10%; }
+#container{ width: 80%; margin:30px;}
+
+#section_edit{margin-bottom:20px;}
+#section_dataList{margin-top:50px;}
+#example{}
+
+
