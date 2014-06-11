@@ -1,10 +1,10 @@
-package pl.kropladev.invoice.model.dao;
+package invoice.model.service;
+
+import invoice.model.enties.Invoice;
 
 import java.util.List;
 
-import pl.kropladev.invoice.model.enties.Invoice;
-
-public interface InvoiceDao {
+public interface InvoiceService {
 	void add(Invoice invoice);
 	void edit(Invoice invoice);
 	void delete(int invId);

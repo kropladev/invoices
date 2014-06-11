@@ -6,11 +6,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
- <jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/develPostgresDS"/>
+ <jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/invoicesDS"/>
  
   <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="packagesToScan" value="pl.kropladev.invoice.model.enties" />
+    <property name="packagesToScan" value="invoice.model.enties" />
     <property name="hibernateProperties">
       <props>
         <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>

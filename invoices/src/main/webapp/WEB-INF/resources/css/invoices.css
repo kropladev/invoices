@@ -7,8 +7,11 @@
 #menu {width: 10%; }
 #container{ width: 80%; margin:30px;}
 
-#section_edit{margin-bottom:20px;}
-#section_dataList{margin-top:50px;}
+#section_edit{display: none; margin-bottom:50px; margin-top:10px; margin-left:15px; margin-bottom:20px;}
+#section_edit table {padding:10px;}
+#action_buttons{margin:20px;}
+
+#section_dataList{margin-top:50px; width:680px;}
 #example{}
 
 

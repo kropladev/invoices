@@ -1,4 +1,6 @@
-package pl.kropladev.invoice.model.dao;
+package invoice.model.dao;
+
+import invoice.model.enties.Invoice;
 
 import java.util.List;
 
@@ -6,10 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import pl.kropladev.invoice.model.enties.Invoice;
-
 @Repository
-public class InvoiceImpl implements InvoiceDao {
+public class InvoiceDaoImpl implements InvoiceDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;

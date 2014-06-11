@@ -1,4 +1,4 @@
-package pl.kropladev.invoice.model.enties;
+package invoice.model.enties;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -100,4 +100,17 @@ public class Invoice {
 	public void setMoTime(Calendar moTime) {
 		this.moTime = moTime;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer sBuf= new StringBuffer();
+				sBuf.append("Invoice [id=" + id + ", name=" + name + ", description="
+				+ description + ", invoiceId=" + invoiceId + ", amount="
+				+ amount + ", invoiceDate=" + invoiceDate + ", payDate="
+				+ payDate + ", moTime=" + moTime + ", category=" + category
+				+ "]");
+
+		return 	sBuf.toString();
+	}
+	
 }
