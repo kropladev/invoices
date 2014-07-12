@@ -7,10 +7,16 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css" title="currentStyle">
-@import	"<spring:url value='/resources'/>/css/redmond/jquery-ui-1.10.4.custom.css";
+@import
+	"<spring:url value='/resources'/>/css/redmond/jquery-ui-1.10.4.custom.css"
+	;
+
 @import "<spring:url value='/resources'/>/css/demo_page.css";
+
 @import "<spring:url value='/resources'/>/css/demo_table.css";
+
 @import "<spring:url value='/resources'/>/css/invoices.css";
+
 @import "<spring:url value='/resources'/>/fancybox/jquery.fancybox.css";
 </style>
 <script type="text/javascript"
@@ -70,26 +76,17 @@
 			$("#example tbody tr").click(function(e) {
 				var clickedInvoiceId=$(this).find('td[id="invId"]').text();
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
-				var json = {"invoiceId" : clickedInvoiceId};
+				
 				$.ajax({
  					type: "POST",	
-					  url: "axInvDetails.json",
-					  //datatype : "json",
-					  data: JSON.stringify(json),
-					  
-					  beforeSend: function(xhr) {
-				            xhr.setRequestHeader("Accept", "application/json");
-				            xhr.setRequestHeader("Content-Type", "application/json");
-				        },
-				        success: function(result) {
-				        	resetInvoiceDetailsData(JSON.parse(result));
-				        }
-				});
-					/* }).done(function(result) {
-						//console.log("ajax call for invoice details + result:"+result);
+					  url: "axInvDetails.htm",
+					  datatype : "json",
+					  data: {invoiceId: clickedInvoiceId}
+					}).done(function(result) {
+						console.log("ajax call for invoice details + result:"+result);
 						resetInvoiceDetailsData(JSON.parse(result));
 					  //$( this ).addClass( "done" );
-					});   */
+					});  
 				
 					
 			/*		$.getJSON( "axInvDetails.htm" , function ( result ) {

@@ -3,22 +3,30 @@ package invoice.controller;
 import invoice.model.enties.Invoice;
 import invoice.model.service.InvoiceService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+//import com.google.gson.Gson;
+
 @Controller
+@RequestMapping("invoices")
 public class InvoiceController {
 	private final Logger log= LoggerFactory.getLogger(this.getClass());
 	@Autowired
@@ -30,7 +38,7 @@ public class InvoiceController {
 	 * @param map Model map object
 	 * @return View name: invoiceList
 	 */
-	@RequestMapping("/index")
+/*	@RequestMapping("/index")
 	public String setupForm(Map<String, Object> map){
 		log.info("Controller::GET /index.htm setupForm()");
 		Invoice invoice = new Invoice();
@@ -38,6 +46,24 @@ public class InvoiceController {
 		map.put("invoiceList", invoiceService.getAllInvoices());
 		log.info("invoiceList from DB:{}", map.get("invoiceList"));
 		return "invoicesList";
+	}*/
+
+	@RequestMapping(value = "", method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody public  List<Invoice> allInvoices(){
+		log.info("Controller::GET /index.htm setupForm()");
+		return invoiceService.getAllInvoices();
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public  ModelAndView allInvoicesPage (){
+		ModelAndView mav = new ModelAndView("invoicesList");
+		log.info("Controller::GET /index.htm setupForm()");
+		List < Invoice > invList = new ArrayList< Invoice >();
+		invList.addAll(allInvoices());
+		mav.addObject("invoiceList",invList);
+		return mav;
 	}
 	
 	/**
@@ -80,8 +106,8 @@ public class InvoiceController {
 		return "invoicesList";
 	}
 	
-	@RequestMapping(value="/axInvDetails",method=RequestMethod.POST , produces= "application/json;charset=UTF-8")
-	public @ResponseBody String ajaxInvoiceDetails(@RequestParam final int invoiceId, Map<String,Object> map){
+	@RequestMapping(value="/axInvDetails.json",method=RequestMethod.POST , produces= "application/json;charset=UTF8")
+	public @ResponseBody String ajaxInvoiceDetails(@RequestParam final int invoiceId ){
 			
 			log.info("Controller::POST /axInvDetails.htm ajaxInvoiceDetails()");
 			Invoice invoiceResult = new Invoice();
@@ -92,13 +118,14 @@ public class InvoiceController {
 			
 			invoiceResult = searchedInvoice!=null? searchedInvoice: new Invoice() ;
 			String json = new Gson().toJson(invoiceResult);
-		    Gson gson = new Gson();
+		    //Gson gson = new Gson();
 
-			log.info("invoiceResult in JSON:{}", json);
+			//log.info("invoiceResult in JSON:{}", json);
 			
 			//map.put("invoice", invoiceResult);
 			//map.put("invoiceList", invoiceService.getAllInvoices());
 		return json;
+			//return invoiceResult;
 	}
 	
 	/**
@@ -108,10 +135,11 @@ public class InvoiceController {
 	 * @return
 	 */
 	@RequestMapping(value="/invoiceDetails",method=RequestMethod.GET)
-	public String retrieveInvoiceDetails(@ModelAttribute final int invoiceId,BindingResult result){
+	public Invoice retrieveInvoiceDetails(@RequestParam final int invoiceId){
 		log.info("Controller:: /invoiceDetails.htm retrieveInvoiceDetais()");
 		Invoice invoiceResult = invoiceService.getInvoice(invoiceId);
-		
-	return "";
+		//String json = new Gson().toJson(invoiceResult);
+	//return json;
+		return invoiceResult;
 	}	
 }
