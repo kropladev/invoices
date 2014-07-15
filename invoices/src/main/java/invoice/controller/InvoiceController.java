@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +28,7 @@ import com.google.gson.Gson;
 //import com.google.gson.Gson;
 
 @Controller
-@RequestMapping("invoices")
+//@RequestMapping("invoices")
 public class InvoiceController {
 	private final Logger log= LoggerFactory.getLogger(this.getClass());
 	@Autowired
@@ -38,7 +40,7 @@ public class InvoiceController {
 	 * @param map Model map object
 	 * @return View name: invoiceList
 	 */
-/*	@RequestMapping("/index")
+	@RequestMapping("/index")
 	public String setupForm(Map<String, Object> map){
 		log.info("Controller::GET /index.htm setupForm()");
 		Invoice invoice = new Invoice();
@@ -46,16 +48,16 @@ public class InvoiceController {
 		map.put("invoiceList", invoiceService.getAllInvoices());
 		log.info("invoiceList from DB:{}", map.get("invoiceList"));
 		return "invoicesList";
-	}*/
+	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET, 
+/*	@RequestMapping(value = "", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody public  List<Invoice> allInvoices(){
 		log.info("Controller::GET /index.htm setupForm()");
 		return invoiceService.getAllInvoices();
-	}
+	}*/
 	
-	@RequestMapping(value = "", method = RequestMethod.GET, 
+/*	@RequestMapping(value = "", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public  ModelAndView allInvoicesPage (){
 		ModelAndView mav = new ModelAndView("invoicesList");
@@ -65,7 +67,7 @@ public class InvoiceController {
 		mav.addObject("invoiceList",invList);
 		return mav;
 	}
-	
+*/	
 	/**
 	 * Actions on submitting the form with single invoice details.
 	 * Actions:  ADD, UPDATE
@@ -106,8 +108,9 @@ public class InvoiceController {
 		return "invoicesList";
 	}
 	
-	@RequestMapping(value="/axInvDetails.json",method=RequestMethod.POST , produces= "application/json;charset=UTF8")
-	public @ResponseBody String ajaxInvoiceDetails(@RequestParam final int invoiceId ){
+	@RequestMapping("axInvDetails/{id}")
+	@ResponseBody 
+	public String ajaxInvoiceDetails(@PathVariable int invoiceId ){
 			
 			log.info("Controller::POST /axInvDetails.htm ajaxInvoiceDetails()");
 			Invoice invoiceResult = new Invoice();

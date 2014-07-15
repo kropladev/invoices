@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("invoice.model.enties")
+//@EnableJpaRepositories("invoice.model.enties")
 public class RepoConfig {
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
@@ -38,12 +39,15 @@ public class RepoConfig {
      
     @Bean
     public DataSource dataSource() {
-            DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	 	final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
+    	    dsLookup.setResourceRef(true);
+    	    
+            DataSource dataSource =  dsLookup.getDataSource("java:jboss/datasources/invoicesDS");
              
-            dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
-            dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-            dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-            dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+           //dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+           // dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+           // dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+           // dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
              
             return dataSource;
     }

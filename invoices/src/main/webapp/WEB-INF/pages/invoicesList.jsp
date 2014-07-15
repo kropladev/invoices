@@ -71,26 +71,20 @@
 				var clickedInvoiceId=$(this).find('td[id="invId"]').text();
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
 				var json = {"invoiceId" : clickedInvoiceId};
-				$.ajax({
- 					type: "POST",	
-					  url: "axInvDetails.json",
+				/* $.ajax({
+ 					type: "GET",	
+					  url: "axInvDetails/"+clickedInvoiceId,
 					  //datatype : "json",
-					  data: JSON.stringify(json),
-					  
-					  beforeSend: function(xhr) {
-				            xhr.setRequestHeader("Accept", "application/json");
-				            xhr.setRequestHeader("Content-Type", "application/json");
-				        },
+					 // data: JSON.stringify(json),
 				        success: function(result) {
 				        	resetInvoiceDetailsData(JSON.parse(result));
 				        }
-				});
-					/* }).done(function(result) {
-						//console.log("ajax call for invoice details + result:"+result);
-						resetInvoiceDetailsData(JSON.parse(result));
-					  //$( this ).addClass( "done" );
-					});   */
+				}); */
+			//	/api/person/' + personId, 
 				
+				$.get("${pageContext.request.contextPath}/axInvDetails/"+clickedInvoiceId,function(resultData){
+					resetInvoiceDetailsData(JSON.parse(resultData));
+				});
 					
 			/*		$.getJSON( "axInvDetails.htm" , function ( result ) {
 						console.log("ajax call for invoice details + result:"+result);
