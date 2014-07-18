@@ -3,27 +3,19 @@ package invoice.controller;
 import invoice.model.enties.Invoice;
 import invoice.model.service.InvoiceService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.Gson;
 
 //import com.google.gson.Gson;
 
@@ -108,27 +100,27 @@ public class InvoiceController {
 		return "invoicesList";
 	}
 	
-	@RequestMapping("axInvDetails/{id}")
+	@RequestMapping("axInvDetails/{invoiceId}")
 	@ResponseBody 
-	public String ajaxInvoiceDetails(@PathVariable int invoiceId ){
+	public Invoice ajaxInvoiceDetails(@PathVariable Long invoiceId ){
 			
 			log.info("Controller::POST /axInvDetails.htm ajaxInvoiceDetails()");
 			Invoice invoiceResult = new Invoice();
 	
-			Invoice searchedInvoice = invoiceService.getInvoice(invoiceId);
+			Invoice searchedInvoice = invoiceService.getInvoice(invoiceId.intValue());
 			
 			log.info("searchedInvoice from DB:{}",searchedInvoice);
 			
 			invoiceResult = searchedInvoice!=null? searchedInvoice: new Invoice() ;
-			String json = new Gson().toJson(invoiceResult);
+			//String json = new Gson().toJson(invoiceResult);
 		    //Gson gson = new Gson();
 
 			//log.info("invoiceResult in JSON:{}", json);
 			
 			//map.put("invoice", invoiceResult);
 			//map.put("invoiceList", invoiceService.getAllInvoices());
-		return json;
-			//return invoiceResult;
+		//return json;
+			return invoiceResult;
 	}
 	
 	/**

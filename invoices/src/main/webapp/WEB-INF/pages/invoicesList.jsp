@@ -82,8 +82,13 @@
 				}); */
 			//	/api/person/' + personId, 
 				
-				$.get("${pageContext.request.contextPath}/axInvDetails/"+clickedInvoiceId,function(resultData){
-					resetInvoiceDetailsData(JSON.parse(resultData));
+				//var jsonString = JSON.parse(resultData);
+				var url = "${pageContext.request.contextPath}/axInvDetails/"+clickedInvoiceId;
+				console.log("Url:"+url);
+				$.get(url ,function(resultData){
+					console.log("resultData:"+resultData);
+					//var jsonParse = JSON.parse(resultData);
+					resetInvoiceDetailsData(resultData);
 				});
 					
 			/*		$.getJSON( "axInvDetails.htm" , function ( result ) {
