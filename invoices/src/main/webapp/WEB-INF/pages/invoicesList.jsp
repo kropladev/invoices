@@ -10,7 +10,8 @@
 @import	"<spring:url value='/resources'/>/css/redmond/jquery-ui-1.10.4.custom.css";
 @import "<spring:url value='/resources'/>/css/demo_page.css";
 @import "<spring:url value='/resources'/>/css/demo_table.css";
-@import "<spring:url value='/resources'/>/css/invoices.css";
+/* @import "<spring:url value='/resources'/>/css/invoices.css"; */
+@import "<spring:url value='/resources'/>/css/style.css";
 @import "<spring:url value='/resources'/>/fancybox/jquery.fancybox.css";
 </style>
 <script type="text/javascript"
@@ -22,14 +23,30 @@
 
 </head>
 <body>
-	<div id="page">
-		<div id="menu" class="floatLeft">
-			<p>Menu</p>
-		</div>
-		<div id="container" class="floatLeft">
-			<div id="section_dataList" class="floatLeft">
+	<div id="page" class="page">
+	
+		<%@ include file="/WEB-INF/pages/template/header.jsp"%>
+	
+		<%@ include file="/WEB-INF/pages/template/menu.jsp"%>
+		
+		<p id="breadcrumbs">
+    		<span >
+        		<span >
+            		<a property="title1" rel="#" href="#">Home</a>
+		        </span>
+    		    <span >
+           			<a property="title2" rel="#" href="#">Uncategorized</a>
+		        </span>
+        		<span >
+            		<span property="title3" class="breadcrumb_last">Lorem ipsum</span>
+        		</span>
+		    </span>
+		</p>
+		
+		<div id="content" class="content floatLeft">
+			<div id="tableWrapper" >
 				<table cellpadding="0" cellspacing="0" border="0" class="display"
-					id="example" width="100%">
+					id="listOfElements" width="100%">
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -50,24 +67,34 @@
 					</c:forEach>
 				</table>
 			</div>
-			<%@ include file="/WEB-INF/pages/invoiceDetails.jsp"%>
-
-			<a class="modalbox" href="#section_edit">click2 to open</a>
 		</div>
+		<%@ include file="/WEB-INF/pages/invoiceDetails.jsp"%>
+		
+		<%@ include file="/WEB-INF/pages/template/footer.jsp"%>	
 	</div>
+	
 	<script type="text/javascript" charset="utf-8">
 		var oTable;
 
 		$(document).ready(function() {
 			/* Init the table */
-			oTable = $('#example').dataTable();
+			//oTable = $('#listOfElements').dataTable();
+			var oTable = $("#listOfElements").DataTable({
+				"bJQueryUI": true,
+				"sDom": '<"H"<"#tableTitle"><"clear">f<"clear">r<"#addButtonContainer">>t<"F"ip<"#tableLengthContainer"l>>',
+				"aoColumnDefs": [ { 'bSortable': false, 'aTargets': [ -1 ] }],
+				 "pagingType":"simple_numbers"
+				 //"sPaginationType": "extStyle"
+			});
 
+			$("#tableTitle").append($("<div/>").append("List of invoices"));
+			
 			/* Add a click handler to the rows - this could be used as a callback */
 			/*hide submit button and...*/
 			$("#buttonEditSubmit").hide();
 			
 			/* ...open fancybox with invoice details*/
-			$("#example tbody tr").click(function(e) {
+			$("#listOfElements tbody tr").click(function(e) {
 				var clickedInvoiceId=$(this).find('td[id="invId"]').text();
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
 				var json = {"invoiceId" : clickedInvoiceId};
