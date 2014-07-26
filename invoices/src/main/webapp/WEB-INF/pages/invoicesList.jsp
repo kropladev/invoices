@@ -42,3 +42,7 @@
 		</div>
 		<script type="text/javascript"
 			src="<spring:url value='/resources'/>/js/inv-invoicesList.js"></script>	
+        
+        
+        
+        
