@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManager;
@@ -25,7 +26,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -54,26 +59,44 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 	}
 	
 	@Bean
-	public InternalResourceViewResolver viewResolver(ContentNegotiationManager manager) {
+	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
 		
 		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 		
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		/*InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/pages/");
 		viewResolver.setSuffix(".jsp");
 		viewResolver.setViewClass(JstlView.class);
 		resolvers.add(viewResolver);
+		*/
+		resolvers.add(tilesViewResolver());
 		
 		JsonViewResolver r2 = new JsonViewResolver();
 		resolvers.add(r2);
 
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		resolver.setOrder(0);
 		resolver.setViewResolvers(resolvers);
+		resolver.setFavorPathExtension(true);
 		resolver.setContentNegotiationManager(manager);
 		
-		return viewResolver;
+		return resolver;
 	}
 	
+	@Bean
+	public UrlBasedViewResolver tilesViewResolver () {
+		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+		tilesViewResolver.setViewClass(TilesView.class);
+		tilesViewResolver.setOrder(1);
+		return tilesViewResolver;
+	}
+
+	@Bean
+	public TilesConfigurer tilesConfigurer () {
+		TilesConfigurer tilesConfigurer = new TilesConfigurer();
+		tilesConfigurer.setDefinitions("/WEB-INF/tiles/tiles-definitions.xml");
+		return tilesConfigurer;
+	}
 	
 	/**
 	* View resolver for returning JSON in a view-based system. Always returns a

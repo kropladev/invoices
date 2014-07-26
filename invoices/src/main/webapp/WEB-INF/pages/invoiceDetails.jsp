@@ -1,11 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript"
 	src="<spring:url value='/resources'/>/fancybox/jquery.fancybox.js"></script>
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		//	$(".modalbox").fancybox();
-	});
-</script>
 <div id="section_edit" class="floatLeft register">
 	<form:form action="invoiceDo.htm" method="POST" commandName="invoice">
 		<div id="invDetailsTable">
@@ -43,11 +40,6 @@
 				<form:input type="datetime-local" path="moTime"></form:input>
 			</div>
 		</div>
-		<!-- 	<div class="floatLeft">
-							<table>
-								
-							</table>
-						</div> -->
 		<div class="floatLeft" id="action_buttons">
 			<table>
 				<tr>

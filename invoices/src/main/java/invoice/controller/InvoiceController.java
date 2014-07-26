@@ -39,7 +39,7 @@ public class InvoiceController {
 		map.put("invoice", invoice);
 		map.put("invoiceList", invoiceService.getAllInvoices());
 		log.info("invoiceList from DB:{}", map.get("invoiceList"));
-		return "invoicesList";
+		return "invList";
 	}
 
 /*	@RequestMapping(value = "", method = RequestMethod.GET, 
