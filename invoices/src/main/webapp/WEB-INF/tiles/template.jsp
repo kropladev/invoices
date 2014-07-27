@@ -22,7 +22,11 @@
 	src="<spring:url value='/resources'/>/js/jquery-ui.custom.js"></script>
 <script type="text/javascript"
 	src="<spring:url value='/resources'/>/js/jquery.dataTables.js"></script>
-
+<script >
+function getContextPath() {
+		   return "${pageContext.request.contextPath}";
+		}
+</script>
 </head>
 	<body>
 		<div id="page" class="page">

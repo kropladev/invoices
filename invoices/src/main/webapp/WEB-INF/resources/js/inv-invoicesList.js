@@ -22,7 +22,7 @@
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
 				var json = {"invoiceId" : clickedInvoiceId};
 				
-				var url = "${pageContext.request.contextPath}/axInvDetails/"+clickedInvoiceId;
+				var url = getContextPath()+"/axInvDetails/"+clickedInvoiceId;
 				console.log("Url:"+url);
 				$.get(url ,function(resultData){
 					console.log("resultData:"+resultData);
