@@ -1,5 +1,6 @@
 	var oTable;
-
+	
+	
 		$(document).ready(function() {
 			/* Init the table */
 			var oTable = $("#listOfElements").DataTable({
@@ -22,7 +23,7 @@
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
 				var json = {"invoiceId" : clickedInvoiceId};
 				
-				var url = getContextPath()+"/axInvDetails/"+clickedInvoiceId;
+				var url = getContextPath() +"/invoice/"+clickedInvoiceId+"/details";
 				console.log("Url:"+url);
 				$.get(url ,function(resultData){
 					console.log("resultData:"+resultData);

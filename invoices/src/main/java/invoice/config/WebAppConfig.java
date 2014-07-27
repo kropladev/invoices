@@ -48,7 +48,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 			.ignoreAcceptHeader(true)
 			.mediaType("html", MediaType.TEXT_HTML)
 			.mediaType("json", MediaType.APPLICATION_JSON)
-			.defaultContentType(MediaType.APPLICATION_JSON);
+			.defaultContentType(MediaType.TEXT_HTML);
 	}
 	
 	@Bean

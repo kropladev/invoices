@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //import com.google.gson.Gson;
 
 @Controller
-//@RequestMapping("invoices")
+@RequestMapping("/invoice")
 public class InvoiceController {
 	private final Logger log= LoggerFactory.getLogger(this.getClass());
 	@Autowired
@@ -32,7 +32,7 @@ public class InvoiceController {
 	 * @param map Model map object
 	 * @return View name: invoiceList
 	 */
-	@RequestMapping("/index")
+	@RequestMapping("/list")
 	public String setupForm(Map<String, Object> map){
 		log.info("Controller::GET /index.htm setupForm()");
 		Invoice invoice = new Invoice();
@@ -100,14 +100,14 @@ public class InvoiceController {
 		return "invoicesList";
 	}
 	
-	@RequestMapping("axInvDetails/{invoiceId}")
+	@RequestMapping("/{invoiceId}/details")
 	@ResponseBody 
-	public Invoice ajaxInvoiceDetails(@PathVariable Long invoiceId ){
+	public Invoice ajaxInvoiceDetails(@PathVariable int invoiceId ){
 			
 			log.info("Controller::POST /axInvDetails.htm ajaxInvoiceDetails()");
 			Invoice invoiceResult = new Invoice();
 	
-			Invoice searchedInvoice = invoiceService.getInvoice(invoiceId.intValue());
+			Invoice searchedInvoice = invoiceService.getInvoice(invoiceId);
 			
 			log.info("searchedInvoice from DB:{}",searchedInvoice);
 			
