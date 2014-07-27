@@ -361,6 +361,7 @@ border-radius: 4px;
 /* breadcrumb section*/
 
 #breadcrumbs {
+	margin: 0px;
     background-color: #F1F1EC;
     border: 1px solid #D6D6D6;
     border-radius: 6px;

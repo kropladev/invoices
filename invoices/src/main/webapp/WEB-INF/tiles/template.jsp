@@ -32,6 +32,7 @@ function getContextPath() {
 		<div id="page" class="page">
 	        <div id="header"><tiles:insertAttribute name="header"/></div>
 	        <div id="menu"><tiles:insertAttribute name="menu"/></div>
+	        <div id="breadcrumb"><tiles:insertAttribute name="breadcrumb"/></div>
 	        
 	        <div id="body"><tiles:insertAttribute name="body"/></div>
 	        <div id="edit"><tiles:insertAttribute name="edit"/></div>

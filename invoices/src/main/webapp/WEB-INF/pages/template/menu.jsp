@@ -3,8 +3,9 @@
 			<div id="menuElem">
 			  <ul>
 			    <li><a href="#" title="Home" >Home</a></li>
-			    <li><a href="#" id="filebrokersListLink" 	>File brokers</a></li>
-			    <li><a href="#" id="brokersListLink" 	>Brokers</a></li>
+				<li><a href="${pageContext.request.contextPath}/invoice/list" id="invoiceLink" >Invoices</a></li>
+			    <li><a href="${pageContext.request.contextPath}/counter/list" id="countersLink" >Counters</a></li>
+			    <li><a href="${pageContext.request.contextPath}/status/list" id="countersStatusesLink" >Counters status</a></li>
 			  </ul>
 			</div>
 		</div>

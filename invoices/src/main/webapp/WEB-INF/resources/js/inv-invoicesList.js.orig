@@ -23,7 +23,11 @@
 				console.log("clickedInvoiceId::"+clickedInvoiceId);
 				var json = {"invoiceId" : clickedInvoiceId};
 				
-				var url = getContextPath() +"/invoice/"+clickedInvoiceId+"/details.json";
+<<<<<<< Updated upstream
+				var url = getContextPath()+"/axInvDetails/"+clickedInvoiceId;
+=======
+				var url = getContextPath() +"/invoice/"+clickedInvoiceId+"/details";
+>>>>>>> Stashed changes
 				console.log("Url:"+url);
 				$.get(url ,function(resultData){
 					console.log("resultData:"+resultData);
