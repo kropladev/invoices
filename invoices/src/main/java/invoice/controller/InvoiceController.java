@@ -1,5 +1,6 @@
 package invoice.controller;
 
+import invoice.model.enties.Counter;
 import invoice.model.enties.Invoice;
 import invoice.model.service.InvoiceService;
 
@@ -25,6 +26,7 @@ public class InvoiceController {
 	private final Logger log= LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private InvoiceService invoiceService;
+	private final static String TABLE_TILE= "List of invoices";
 	
 	/**
 	 * Main site controller. Triggered on application  start.
@@ -38,7 +40,9 @@ public class InvoiceController {
 		Invoice invoice = new Invoice();
 		map.put("invoice", invoice);
 		map.put("invoiceList", invoiceService.getAllInvoices());
+		map.put("tableTitle", "List of  invoices");
 		log.info("invoiceList from DB:{}", map.get("invoiceList"));
+		map.put("tableTitle", TABLE_TILE);
 		return "invList";
 	}
 
@@ -97,6 +101,7 @@ public class InvoiceController {
 		
 		map.put("invoice", invoiceResult);
 		map.put("invoiceList", invoiceService.getAllInvoices());
+		map.put("tableTitle", TABLE_TILE);
 		return "invoicesList";
 	}
 	
@@ -112,15 +117,29 @@ public class InvoiceController {
 			log.info("searchedInvoice from DB:{}",searchedInvoice);
 			
 			invoiceResult = searchedInvoice!=null? searchedInvoice: new Invoice() ;
-			//String json = new Gson().toJson(invoiceResult);
-		    //Gson gson = new Gson();
-
-			//log.info("invoiceResult in JSON:{}", json);
-			
-			//map.put("invoice", invoiceResult);
-			//map.put("invoiceList", invoiceService.getAllInvoices());
-		//return json;
 			return invoiceResult;
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String add(@ModelAttribute Invoice invoice, BindingResult result,
+			Map<String, Object> map) {
+
+		log.info("Controller::POST /invoice/create add()");
+		
+		invoiceService.add(invoice);
+
+		map.put("invoice", new Invoice());
+		map.put("invoiceList", invoiceService.getAllInvoices());
+		map.put("tableTitle", "List of  invoices");
+		map.put("tableTitle", TABLE_TILE);
+		return "invList";
+	}
+	
+	@RequestMapping("/new")
+	@ResponseBody
+	public Invoice newForm() {
+		log.info("InvoiceController::GET /new newForm()");
+		return  new Invoice();
 	}
 	
 	/**

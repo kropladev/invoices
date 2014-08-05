@@ -13,9 +13,21 @@
       <put-attribute name="edit" value="" />
       <put-attribute name="footer" value="/WEB-INF/pages/template/footer.jsp" />
     </definition>
+   
     <definition name="invList" extends="base.definition">
-<!--       <put-attribute name="title" value="Home" /> -->
       <put-attribute name="body" value="/WEB-INF/pages/invoicesList.jsp" />
       <put-attribute name="edit" value="/WEB-INF/pages/invoiceDetails.jsp" />
     </definition>
+
+    <definition name="counterList" extends="base.definition">
+      <put-attribute name="body" value="/WEB-INF/pages/counterList.jsp" />
+      <put-attribute name="edit" value="/WEB-INF/pages/counterDetails.jsp" />
+    </definition>
+
+ 	<definition name="readList" extends="base.definition">
+      <put-attribute name="body" value="/WEB-INF/pages/readList.jsp" />
+      <put-attribute name="edit" value="/WEB-INF/pages/readDetails.jsp" />
+    </definition>
+
+
 </tiles-definitions>

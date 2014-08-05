@@ -135,8 +135,8 @@ body {margin:0; padding:0;height:100%;}
 	float:right;
 }
 a.buttons:HOVER {
-	box-shadow: 1px -1px 8px 1px #AAAAaa inset;
-	border-radius:5px;
+	box-shadow: 1px -1px 8px 1px #2462af inset;
+	border-radius:13px;
 }
 
 a.addButton {
@@ -212,6 +212,12 @@ a.deleteButton {
 }
 
 /* dataTable layout */
+#tableTitleT {
+	margin: 5px 5px 5px 10px;
+	width: 200px;
+	float: left;
+}
+
 #tableWrapper {  
 	width: 840px; float:left; box-shadow: 0 0 20px 5px #ddd inset; 
 	 border: 3px solid #BADA55;

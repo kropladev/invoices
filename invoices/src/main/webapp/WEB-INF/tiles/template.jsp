@@ -12,7 +12,6 @@
 @import	"<spring:url value='/resources'/>/css/redmond/jquery-ui-1.10.4.custom.css";
 @import "<spring:url value='/resources'/>/css/demo_page.css";
 @import "<spring:url value='/resources'/>/css/demo_table.css";
-/* @import "<spring:url value='/resources'/>/css/invoices.css"; */
 @import "<spring:url value='/resources'/>/css/style.css";
 @import "<spring:url value='/resources'/>/fancybox/jquery.fancybox.css";
 </style>

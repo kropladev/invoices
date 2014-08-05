@@ -11,19 +11,19 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>name</th>
-							<th>desc</th>
-							<th>amount</th>
-							<th>symbol</th>
+							<th>date</th>
+							<th>counters</th>
 						</tr>
 					</thead>
-					<c:forEach items="${invoiceList}" var="invoice">
+					<c:forEach items="${elemList}" var="elem">
 						<tr>
-							<td id='invId'>${invoice.id}</td>
-							<td>${invoice.name}</td>
-							<td>${invoice.description}</td>
-							<td>${invoice.amount}</td>
-							<td>${invoice.invoiceId}</td>
+							<td id='invId'>${elem.id}</td>
+							<td>${elem.readDate}</td>
+							<td>
+							<c:forEach items="${elem.counterStatusesList}" var="subElem">
+								<p>${subElem.id}</p>
+							</c:forEach> 
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -32,7 +32,8 @@
 		<script type="text/javascript"
 			src="<spring:url value='/resources'/>/js/inv-common.js"></script>	
 		<script type="text/javascript"
-			src="<spring:url value='/resources'/>/js/inv-invoicesList.js"></script>	        
+			src="<spring:url value='/resources'/>/js/inv-readList.js"></script>	    
+        
         
         
         

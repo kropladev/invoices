@@ -4,40 +4,32 @@
 <script type="text/javascript"
 	src="<spring:url value='/resources'/>/fancybox/jquery.fancybox.js"></script>
 <div id="section_edit" class="floatLeft register">
-	<form:form action="/invoice/edit" method="POST" commandName="invoice">
-		<div id="invDetailsTable">
+	<form:form id="mainForm" action="/read/edit" method="POST" commandName="elem">
+		<div id="elemDetailsTable">
 			<!-- <table id="invDetailsTable"> -->
 			<div>
-				<label>Invoice ID2</label>
+				<label>Counter ID</label>
 				<form:input path="id"></form:input>
 			</div>
 			<div>
-				<label>Name</label>
-				<form:input path="name"></form:input>
+				<label>Date</label>
+				<form:input path="readDate"></form:input>
 			</div>
+			
 			<div>
-				<label>Desc</label>
-				<form:input path="description"></form:input>
-			</div>
-			<div>
-				<label>Amount</label>
-				<form:input path="amount"></form:input>
-			</div>
-			<div>
-				<label>Invoice symbol</label>
-				<form:input path="invoiceId"></form:input>
-			</div>
-			<div>
-				<label>Category</label>
-				<form:input path="category"></form:input>
-			</div>
-			<div>
-				<label>Pay Date</label>
-				<form:input type="date" path="payDate"></form:input>
-			</div>
-			<div>
-				<label>Mo Time</label>
-				<form:input type="datetime-local" path="moTime"></form:input>
+			<hr>
+				<p> Counter Statuses </p>
+					<div>
+						<label>Counter</label>
+						<form:select path="status.counter" >
+							<form:options items="${counterList}"  itemLabel="serial" itemValue="id" />
+						</form:select>
+					</div>
+					<div>
+						<label>Amount</label>
+						<form:input path="status.amount"/>
+					</div>
+					<div><form:</div>
 			</div>
 		</div>
 		<div class="floatLeft" id="action_buttons">

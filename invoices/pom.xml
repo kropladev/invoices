@@ -7,6 +7,8 @@
 	<properties>
 		<!-- Spring -->
 		<spring-framework.version>4.0.5.RELEASE</spring-framework.version>
+		<spring.security.version>3.2.4.RELEASE</spring.security.version>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring-jpa.version>1.6.1.RELEASE</spring-jpa.version>
@@ -147,10 +149,22 @@
 		</dependency>
  -->		
 		<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>jstl</artifactId>
-	<version>1.2</version>
-</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
 
 
 		<dependency>

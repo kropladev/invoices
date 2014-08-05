@@ -4,40 +4,24 @@
 <script type="text/javascript"
 	src="<spring:url value='/resources'/>/fancybox/jquery.fancybox.js"></script>
 <div id="section_edit" class="floatLeft register">
-	<form:form action="/invoice/edit" method="POST" commandName="invoice">
-		<div id="invDetailsTable">
+	<form:form id="mainForm" action="/counter/edit" method="POST" commandName="counter">
+		<div id="counterDetailsTable">
 			<!-- <table id="invDetailsTable"> -->
 			<div>
-				<label>Invoice ID2</label>
+				<label>Counter ID</label>
 				<form:input path="id"></form:input>
 			</div>
 			<div>
-				<label>Name</label>
-				<form:input path="name"></form:input>
+				<label>Serial</label>
+				<form:input path="serial"></form:input>
 			</div>
 			<div>
 				<label>Desc</label>
 				<form:input path="description"></form:input>
 			</div>
 			<div>
-				<label>Amount</label>
-				<form:input path="amount"></form:input>
-			</div>
-			<div>
-				<label>Invoice symbol</label>
-				<form:input path="invoiceId"></form:input>
-			</div>
-			<div>
-				<label>Category</label>
-				<form:input path="category"></form:input>
-			</div>
-			<div>
-				<label>Pay Date</label>
-				<form:input type="date" path="payDate"></form:input>
-			</div>
-			<div>
-				<label>Mo Time</label>
-				<form:input type="datetime-local" path="moTime"></form:input>
+				<label>Active</label>
+				<form:input path="active"></form:input>
 			</div>
 		</div>
 		<div class="floatLeft" id="action_buttons">
